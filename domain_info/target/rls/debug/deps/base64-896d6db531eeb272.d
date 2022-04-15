@@ -1,0 +1,11 @@
+/Users/tomrichmond/Desktop/Development/limelight_homework/domain_info/target/rls/debug/deps/base64-896d6db531eeb272.rmeta: /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/lib.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/chunked_encoder.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/display.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/line_wrap.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/tables.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/encode.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/decode.rs
+
+/Users/tomrichmond/Desktop/Development/limelight_homework/domain_info/target/rls/debug/deps/base64-896d6db531eeb272.d: /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/lib.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/chunked_encoder.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/display.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/line_wrap.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/tables.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/encode.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/decode.rs
+
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/lib.rs:
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/chunked_encoder.rs:
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/display.rs:
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/line_wrap.rs:
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/tables.rs:
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/encode.rs:
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/decode.rs:

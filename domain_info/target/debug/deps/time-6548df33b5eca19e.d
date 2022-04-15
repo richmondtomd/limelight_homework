@@ -1,0 +1,11 @@
+/Users/tomrichmond/Desktop/Development/limelight_homework/domain_info/target/debug/deps/time-6548df33b5eca19e.rmeta: /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/lib.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/display.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/duration.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/parse.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/sys.rs
+
+/Users/tomrichmond/Desktop/Development/limelight_homework/domain_info/target/debug/deps/libtime-6548df33b5eca19e.rlib: /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/lib.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/display.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/duration.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/parse.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/sys.rs
+
+/Users/tomrichmond/Desktop/Development/limelight_homework/domain_info/target/debug/deps/time-6548df33b5eca19e.d: /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/lib.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/display.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/duration.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/parse.rs /Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/sys.rs
+
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/lib.rs:
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/display.rs:
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/duration.rs:
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/parse.rs:
+/Users/tomrichmond/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.1.44/src/sys.rs:
