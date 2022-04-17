@@ -1,12 +1,14 @@
-use crate::models;
+use crate::models::ResponseInfo;
 
 use std::collections::HashMap;
+use std::sync::{Mutex, Arc};
+use std::thread;
 
 use ureq::{Error, Response};
 use dns_lookup::lookup_host;
 use ssl_expiration::SslExpiration;
 
-pub fn process(domain: &str) -> Result<models::ResponseInfo, String> {
+pub fn process(domain: &str) -> Result<ResponseInfo, String> {
     // Get pertinent info
     let info = get_http_info(domain)?;
 
@@ -24,38 +26,93 @@ pub fn clean_url(url: &str) -> String {
     }
 }
 
-pub fn get_http_info(domain: &str) -> Result<models::ResponseInfo, String> {
+pub fn get_http_info(domain: &str) -> Result<ResponseInfo, String> {
     let url = &clean_url(domain);
+
+    let result = Arc::new(Mutex::new(ResponseInfo::default()));
+    let mut http_status = 0;
+    let mut cert_valid = false;
+    let mut layer_0_version: Option<String> = None;
+    let mut layer_0_timings: Option<HashMap<String, u16>> = None;
+    let mut ips = vec![];
 
     match ureq::get(url).call() {
         Ok(response) => {
-            Ok(models::ResponseInfo {
-                http_status: get_status(&response),
-                cert_valid: is_certificate_valid(domain),
-                layer_0_version: layer0_version(&response), 
-                layer_0_timings: layer0_timing(&response),
-                ips: list_i_ps(domain)
-            })
+            let response = Arc::new(response);
+            let response_clone = Arc::clone(&response);
+            thread::spawn(move || {
+                http_status = get_status(&response_clone)
+            });
+            thread::spawn(move || {
+                // cert_valid = is_certificate_valid(domain);
+            });
+            let response_clone = Arc::clone(&response);
+            thread::spawn(move || {
+                layer_0_version = layer0_version(&response_clone);
+            });
+            let response_clone = Arc::clone(&response);
+            thread::spawn(move || {
+                layer_0_timings = layer0_timing(&response_clone);
+            });
+            thread::spawn(move || {
+                // ips = list_i_ps(domain);
+            });
+
+            // handle.join().unwrap();
+            // Ok(models::ResponseInfo {
+            //     http_status: get_status(&response),
+            //     cert_valid: is_certificate_valid(domain),
+            //     layer_0_version: layer0_version(&response), 
+            //     layer_0_timings: layer0_timing(&response),
+            //     ips: list_i_ps(domain)
+            // })
+
         },
         Err(Error::Status(code, response)) => {
-            Ok(models::ResponseInfo {
-                http_status: code,
-                cert_valid: is_certificate_valid(domain),
-                layer_0_version: layer0_version(&response), 
-                layer_0_timings: layer0_timing(&response),
-                ips: list_i_ps(domain)
-            })
+            let response = Arc::new(response);
+
+            http_status = code;
+            thread::spawn(move || {
+                // cert_valid = is_certificate_valid(domain);
+            });
+            let response_clone = Arc::clone(&response);
+            thread::spawn(move || {
+                layer_0_version = layer0_version(&response_clone);
+            });
+            let response_clone = Arc::clone(&response);
+            thread::spawn(move || {
+                layer_0_timings = layer0_timing(&response_clone);
+            });
+            thread::spawn(move || {
+                // ips = list_i_ps(domain);
+            });
+            // Ok(models::ResponseInfo {
+            //     http_status: code,
+            //     cert_valid: is_certificate_valid(domain),
+            //     layer_0_version: layer0_version(&response), 
+            //     layer_0_timings: layer0_timing(&response),
+            //     ips: list_i_ps(domain)
+            // })
         },
         Err(_) => {
-            Ok(models::ResponseInfo {
-                http_status: 0,
-                cert_valid: false,
-                layer_0_version: None, 
-                layer_0_timings: None,
-                ips: vec![]
-            })
+            // Ok(models::ResponseInfo {
+            //     http_status: 0,
+            //     cert_valid: false,
+            //     layer_0_version: None, 
+            //     layer_0_timings: None,
+            //     ips: vec![]
+            // })
         },
     }
+    Ok(ResponseInfo {
+        http_status: http_status,
+        cert_valid: cert_valid,
+        layer_0_version: layer_0_version, 
+        layer_0_timings: layer_0_timings,
+        ips: ips
+    })
+
+    // Ok(*result.lock().unwrap())
 }
 
 pub fn get_status(response: &Response) -> u16 {
