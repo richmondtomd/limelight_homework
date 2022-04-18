@@ -8,24 +8,14 @@ use ureq::{Error, Response};
 use dns_lookup::lookup_host;
 use ssl_expiration::SslExpiration;
 
+/// Main processing function for retrieving domain info
 pub fn process(domain: &str) -> Result<ResponseInfo, String> {
-    
     let info = get_http_info(domain)?;
 
     Ok(info)
 }
 
-pub fn clean_url(url: &str) -> String {
-    match url.starts_with("http://") || url.starts_with("http://") {
-        true => {
-            return String::from(url)
-        },
-        false => {
-            return format!("http://{}", url)
-        }
-    }
-}
-
+/// Function to get all pertinent http information from a given domain
 pub fn get_http_info(domain: &str) -> Result<ResponseInfo, String> {
     let url = &clean_url(domain);
 
@@ -144,15 +134,30 @@ pub fn get_http_info(domain: &str) -> Result<ResponseInfo, String> {
     }
 }
 
+/// Function to take domain and present clean url for processes
+pub fn clean_url(url: &str) -> String {
+    match url.starts_with("http://") || url.starts_with("http://") {
+        true => {
+            return String::from(url)
+        },
+        false => {
+            return format!("http://{}", url)
+        }
+    }
+}
+
+/// Function to retrieve http status from a response object
 pub fn get_status(response: &Response) -> u16 {
     response.status()
 }
 
+/// Function to retrieve the cert valid status given a domain
 pub fn is_certificate_valid(domain: &str) -> bool {
     let expiration = SslExpiration::from_domain_name(domain).unwrap();
     !expiration.is_expired()
 }
 
+/// Function to retrieve the layer0 version from the x-0-version response header
 pub fn layer0_version(response: &Response) -> Option<String> {
     match response.header("x-0-version") {
         Some(header) => {
@@ -165,6 +170,7 @@ pub fn layer0_version(response: &Response) -> Option<String> {
     }
 }
 
+/// Function to retrieve the layer0 timing from the x-0-t response header
 pub fn layer0_timing(response: &Response) -> Option<HashMap<String, u16>> {
     match response.header("x-0-t") {
         Some(header) => {
@@ -189,6 +195,7 @@ pub fn layer0_timing(response: &Response) -> Option<HashMap<String, u16>> {
     }
 }
 
+/// Function to retrieve all servicing IPs given a domain
 pub fn list_i_ps(domain: &str) -> Vec<std::net::IpAddr> {
     let ips: Vec<std::net::IpAddr> = lookup_host(domain).unwrap();
     ips
