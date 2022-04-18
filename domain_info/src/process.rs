@@ -18,6 +18,7 @@ pub fn process(domain: &str) -> Result<ResponseInfo, String> {
 /// Function to get all pertinent http information from a given domain
 pub fn get_http_info(domain: &str) -> Result<ResponseInfo, String> {
     let url = &clean_url(domain);
+    let domain = domain.to_string();
 
     let result = Arc::new(Mutex::new(ResponseInfo::default()));
 
@@ -25,11 +26,9 @@ pub fn get_http_info(domain: &str) -> Result<ResponseInfo, String> {
         Ok(response) => {
             let mut handles = vec![];
 
-            let domain = domain.to_string();
-
             let response = Arc::new(response);
-            let response_clone = Arc::clone(&response);
 
+            let response_clone = Arc::clone(&response);
             let result_clone = Arc::clone(&result);
             let handle = thread::spawn(move || {
                 let http_status = get_status(&response_clone);
@@ -77,8 +76,6 @@ pub fn get_http_info(domain: &str) -> Result<ResponseInfo, String> {
         },
         Err(Error::Status(code, response)) => {
             let mut handles = vec![];
-
-            let domain = domain.to_string();
 
             let response = Arc::new(response);
 
